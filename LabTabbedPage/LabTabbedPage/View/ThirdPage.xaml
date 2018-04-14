@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="ThirdPage"
+             x:Class="LabTabbedPage.View.ThirdPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Margin="10">
+                <StackLayout HorizontalOptions="Fill" Orientation="Horizontal" >
+                    <StackLayout HorizontalOptions="StartAndExpand" BackgroundColor="Transparent" WidthRequest="60" />
+                    <StackLayout HorizontalOptions="CenterAndExpand" >
+                        <Image Source="{Binding ActualStudent.Picture}" HeightRequest="120" WidthRequest="100" />
+                    </StackLayout>
+                    <StackLayout HorizontalOptions="EndAndExpand" VerticalOptions="Center" Margin="0,0,30,0" >
+                        <Image VerticalOptions="Center" Source="Share_50px" HeightRequest="36" WidthRequest="36" />
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Margin="20,5,0,20">
+                    <Label Text="ID:" Font="20" TextColor="Black" FontAttributes="Bold" />
+                    <Label Text="{Binding ActualStudent.ID}" Font="18" TextColor="Black" />
+                </StackLayout>
+            <StackLayout Orientation="Horizontal" Margin="20,5,0,20">
+                    <Label Text="Name: " Font="20" TextColor="Black" FontAttributes="Bold" />
+                    <Label Text="{Binding ActualStudent.Name}" Font="18" TextColor="Black" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Margin="20,5,0,20">
+                    <Label Text="Grade: " Font="20" TextColor="Black" FontAttributes="Bold" />
+                    <Label Text="{Binding ActualStudent.Grade}" Font="18" TextColor="Black" />
+                </StackLayout>
+                <ListView x:Name="lstVHomeworks" ItemsSource="{Binding ActualStudent.LstHomeworks}" BackgroundColor="Gainsboro" Margin="5,5">
+                    <ListView.Header>
+                        <StackLayout Orientation="Vertical">
+                            <StackLayout HorizontalOptions="FillAndExpand" BackgroundColor="White"> 
+                                 <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" BackgroundColor="White" Padding="5">
+                                    <Label HorizontalOptions="CenterAndExpand" Text="    List of Homeworks: " Font="20" FontAttributes="Bold" TextColor="Black"  />
+                                    <Label HorizontalOptions="CenterAndExpand" Text="{Binding ActualStudent.LstHomeworks.Count}" Font="20" TextColor="Black" FontAttributes="Bold" BackgroundColor="Transparent" />
+                                    <Image HorizontalOptions="End" Source="Add_50Bpx" Margin="20,0,0,0"  HeightRequest="30" WidthRequest="30" >
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding AddNewHomeworkCommand}" />
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                </StackLayout>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand"  BackgroundColor="CornflowerBlue" Margin="0,-7,0,0">
+                                <StackLayout  HorizontalOptions="CenterAndExpand" Padding="5">
+                                    <Label Text="ID" Font="18" FontAttributes="Bold" TextColor="White"/>
+                                </StackLayout>
+                                <StackLayout  HorizontalOptions="FillAndExpand" Padding="5">
+                                    <Label Text="File" Font="18" FontAttributes="Bold" TextColor="White" />
+                                </StackLayout>
+                            </StackLayout>
+                        </StackLayout>
+                    </ListView.Header>
+                    <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" Padding="5" >
+                                <!--<Label Text="Client: " Font="20" TextColor="Black" />-->
+                                <Label Text="{Binding ID}" Font="20" TextColor="Black" >
+                                </Label>
+                                    <Label Text="{Binding File}" Font="20" TextColor="Black">
+                                </Label>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

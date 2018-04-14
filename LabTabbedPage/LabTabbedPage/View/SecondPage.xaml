@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="SecondPage"
+             x:Name="SecondPage"
+             x:Class="LabTabbedPage.View.SecondPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal" VerticalOptions="Start" HorizontalOptions="Center" Padding="10">
+                <Image Source="{Binding ActualCourse.Icon}" />
+                <Label Text="{Binding ActualCourse.Title}" Font="22" VerticalOptions="Center" YAlign="Center" TextColor="Black"/>
+            </StackLayout>
+            <StackLayout>
+                <ListView x:Name="lstVlstStudents" ItemsSource="{Binding ActualCourse.ListStudents}" RowHeight="60" HasUnevenRows="True">
+                    <ListView.Header>
+                        <StackLayout Orientation="Vertical">
+                            <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" HorizontalOptions="Center">
+                                <Label Text="List of Students: " Font="20" FontAttributes="Bold" TextColor="Black" />
+                                <Label Text="{Binding ActualCourse.ListStudents.Count}" Font="20" TextColor="Black" FontAttributes="Bold" />
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" Padding="10" BackgroundColor="CornflowerBlue">
+                                <StackLayout  HorizontalOptions="CenterAndExpand">
+                                    <Label Text="Picture" Font="18" FontAttributes="Bold" TextColor="White"/>
+                                </StackLayout>
+                                <StackLayout  HorizontalOptions="FillAndExpand">
+                                    <Label Text="ID" Font="18" FontAttributes="Bold" TextColor="White" />
+                                </StackLayout>
+                                <StackLayout  HorizontalOptions="FillAndExpand">
+                                    <Label Text="Name" Font="18" FontAttributes="Bold" TextColor="White" />
+                                </StackLayout>
+                                <StackLayout  HorizontalOptions="FillAndExpand">
+                                    <Label Text="Grade" Font="18" FontAttributes="Bold" TextColor="White"  />
+                                </StackLayout>
+                            </StackLayout>
+                        </StackLayout>
+                    </ListView.Header>
+                    <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                                <StackLayout Orientation="Horizontal" Padding="10" VerticalOptions="FillAndExpand">
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.SeeStudentDetailCommand, Source={x:Reference SecondPage}}" CommandParameter="{Binding ID}" />
+                                    </StackLayout.GestureRecognizers>
+                                    <Image Source="{Binding Picture}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="60" WidthRequest="60"/>
+                                    <StackLayout  HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                                        <Label Text="{Binding ID}" Font="16" TextColor="Black"  />
+                                    </StackLayout>
+                                    <StackLayout  HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                                        <Label Text="{Binding Name}" Font="16" TextColor="Black" />
+                                    </StackLayout>
+                                    <StackLayout  HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                                        <Label Text="{Binding Grade}" Font="16" TextColor="Black" />
+                                      </StackLayout>
+                                    </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+          </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LabTabbedPage.ModalNavigation.AddNewHomeworkView">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center">
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                <BoxView BackgroundColor="RoyalBlue"  HorizontalOptions="FillAndExpand" VerticalOptions="Center"/>
+                <StackLayout VerticalOptions="Center">
+                    <Image Source="{Binding ActualStudent.Picture}" HeightRequest="80" WidthRequest="80" Margin="5,5,5,5" HorizontalOptions="Center" />
+                </StackLayout>
+                <Label Text="{Binding ActualStudent.Name}" FontSize="Large" HorizontalOptions="Center" FontAttributes="Bold" TextColor="Black" />
+                <Label Text="Add New Homework:" FontSize="Large" HorizontalOptions="Center" FontAttributes="Bold" TextColor="Black" />
+                <StackLayout Orientation="Horizontal" VerticalOptions="Center" >
+                    <Label Text="ID:" FontSize="Medium" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" />
+                    <Entry Text="{Binding IDNewHomework}" FontSize="Medium"  HorizontalOptions="FillAndExpand" FontAttributes="Bold" Margin="0,0,30,0" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                    <Label Text="File:" FontSize="Medium" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" />
+                    <Entry Text="{Binding FileNewHomework}" FontSize="Medium" HorizontalOptions="FillAndExpand" FontAttributes="Bold" Margin="0,0,30,0" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Padding="10" Margin="10">
+                    <Button x:Name="addButton" Text="Add" HorizontalOptions="FillAndExpand" Command="{Binding OnAddHomeworkButtonClickedCommand}" />
+                    <Button x:Name="dismissButton" Text="Dismiss" HorizontalOptions="FillAndExpand" Command="{Binding OnDismissButtonClickedCommand}" />
+                </StackLayout>
+                <BoxView BackgroundColor="RoyalBlue"  HorizontalOptions="FillAndExpand" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

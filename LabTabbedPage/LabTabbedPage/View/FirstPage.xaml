@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="FirstPage"
+             x:Class="LabTabbedPage.View.FirstPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Margin="0,10,0,2" >
+                <Label Text="Add Student"
+                     VerticalOptions="StartAndExpand" 
+                     HorizontalOptions="CenterAndExpand"
+                    Font="20"  FontAttributes="Bold" TextColor="Black"/>
+            </StackLayout>
+            <StackLayout>
+                <!--<Image Source="Unsplash96" HeightRequest="120" WidthRequest="100" />-->
+                <BoxView BackgroundColor="CornflowerBlue" HeightRequest="5" Margin="40,0"></BoxView>
+                <StackLayout HeightRequest="165" BackgroundColor="Silver"  Margin="40,0">
+                    <Image Source="{Binding ImageStudent.Source}" HeightRequest="160" WidthRequest="100" />
+                </StackLayout>
+                <BoxView BackgroundColor="CornflowerBlue" HeightRequest="5"  Margin="40,0"></BoxView>
+                <Label Text="Capture/Select Image for New Student"
+                    VerticalOptions="CenterAndExpand" 
+                    HorizontalOptions="CenterAndExpand"
+                     Font="18"  FontAttributes="Bold"  TextColor="Black"  />
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" >
+                    <!--Command="{Binding TakeStudentPictureCommand}"-->
+                    <Button x:Name="takePhoto" Text="Take Photo" IsEnabled="False"/>
+                    <Button x:Name="pickPhoto" Text="Pick Photo" IsEnabled="False"/>
+                </StackLayout>
+                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="5,0" Margin="10,0,10,0">
+                    <StackLayout Orientation="Horizontal" Padding="2" Margin="5,0,0,0" >
+                        <Label Text="ID:" Font="20" FontAttributes="Bold" TextColor="Black" HorizontalOptions="Start" VerticalOptions="Center" />
+                        <Entry Text="{Binding IDNewStudent}" BackgroundColor="Snow" FontSize="Medium" HorizontalOptions="FillAndExpand" VerticalOptions="Center" />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Padding="2" Margin="5,0,0,0">
+                        <Label Text="Name:" Font="20" FontAttributes="Bold" TextColor="Black" HorizontalOptions="Start" VerticalOptions="Center" />
+                        <Entry Text="{Binding NameNewStudent}" BackgroundColor="Snow" FontSize="Medium" HorizontalOptions="FillAndExpand" VerticalOptions="Center" />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Padding="2" Margin="5,0,0,0" >
+                        <Label Text="Grade:" Font="20" FontAttributes="Bold" TextColor="Black" HorizontalOptions="Start" VerticalOptions="Center" />
+                        <Entry Text="{Binding GradeNewStudent}" WidthRequest="80" Keyboard="Numeric" BackgroundColor="Snow" FontSize="Medium"   VerticalOptions="Center"/>
+                    </StackLayout>
+                    <StackLayout HorizontalOptions="Center" Margin="5,1,5,10">
+                        <Button Text="Add Student" Font="18" FontAttributes="Bold" WidthRequest="240" HeightRequest="50" 
+                                BackgroundColor="CornflowerBlue" BorderColor="White" BorderRadius="6" TextColor="White" BorderWidth="4.0" Command="{Binding AddStudentToCourseCommand}"/>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

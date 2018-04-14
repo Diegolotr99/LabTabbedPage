@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 
 using Xamarin.Forms;
+using LabTabbedPage.View;
+using DLToolkit.Forms.Controls;
+using Xamarin.Forms.PlatformConfiguration;
 
 namespace LabTabbedPage
 {
@@ -13,8 +16,21 @@ namespace LabTabbedPage
 		{
 			InitializeComponent();
 
-			MainPage = new LabTabbedPage.MainPage();
-		}
+            FlowListView.Init();
+
+            //NavigationPage navPage = new NavigationPage(new MainTabNavigation());
+            //navPage.BarBackgroundColor=Color.Black;
+            //navPage.Title = "Courses-Student Control";
+            //MainPage = navPage;
+            //CoursesView cv = new CoursesView();
+            
+            NavigationPage np = new NavigationPage(new CoursesView());
+            np.BarTextColor = Color.White;
+            
+            np.BarBackgroundColor = Color.RoyalBlue;
+            
+            MainPage = np;
+        }
 
 		protected override void OnStart ()
 		{

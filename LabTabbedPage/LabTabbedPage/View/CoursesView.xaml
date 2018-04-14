@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LabTabbedPage.View.CoursesView"
+             x:Name="CoursesView"
+             xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView" >
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
+            <!--<flv:FlowListView FlowColumnCount="2" SeparatorVisibility="None" HasUnevenRows="false"
+	                    FlowItemTappedCommand="{Binding ItemTappedCommand}" FlowLastTappedItem="{Binding LastTappedItem}"
+	                    FlowItemsSource="{Binding LstCourses}" >-->
+            <flv:FlowListView FlowColumnCount="2" SeparatorVisibility="None" HasUnevenRows="True" 
+	                    FlowItemsSource="{Binding LstCourses}" >
+                <flv:FlowListView.Header>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" BackgroundColor="CornflowerBlue" Padding="10">
+                        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Orientation="Horizontal" Padding="20,5,5,5">
+                            <Label VerticalOptions="Center" Text="List of Courses" Font="24" TextColor="White"  FontAttributes="Bold" Margin="25,0,0,0"/>
+                            <Image Source="Add_50Wpx"  HeightRequest="34" WidthRequest="32" Margin="10,0,0,0" >
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding AddNewCourseCommand}" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </StackLayout>
+                    </StackLayout>    
+                </flv:FlowListView.Header>
+                        <flv:FlowListView.FlowColumnTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Vertical" HorizontalOptions="Fill" VerticalOptions="Fill">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Path=BindingContext.SeeCourseStudentsCommand, Source={x:Reference CoursesView}}" CommandParameter="{Binding ID}" />
+                            </StackLayout.GestureRecognizers>
+                            <Image HorizontalOptions="Fill" VerticalOptions="Fill" Source="{Binding Icon}" />
+                            <Label HorizontalOptions="Fill" VerticalOptions="Fill" XAlign="Center" YAlign="Center" Text="{Binding Title}"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </flv:FlowListView.FlowColumnTemplate>
+                <flv:FlowListView.Footer>
+                    <StackLayout HorizontalOptions="Fill" VerticalOptions="Center" HeightRequest="40">
+                        <Image  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Source="AddNew50"  HeightRequest="40" WidthRequest="40" >
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding AddNewCourseCommand}" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </StackLayout>
+                </flv:FlowListView.Footer>
+            </flv:FlowListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

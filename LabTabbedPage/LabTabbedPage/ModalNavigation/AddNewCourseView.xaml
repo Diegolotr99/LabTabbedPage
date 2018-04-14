@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LabTabbedPage.ModalNavigation.AddNewCourseView">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+            <BoxView BackgroundColor="RoyalBlue"  HorizontalOptions="FillAndExpand"/>
+            <Label Text="Add New Course:" FontSize="Large" HorizontalOptions="Center" FontAttributes="Bold" TextColor="Black" />
+            <StackLayout Orientation="Horizontal" >
+                <Label Text="ID:" FontSize="Medium" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" />
+                <Entry Text="{Binding IDNewCourse}" FontSize="Medium"  HorizontalOptions="FillAndExpand" FontAttributes="Bold" Margin="0,0,30,0" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" >
+                <Label Text="Title:" FontSize="Medium"  HorizontalOptions="CenterAndExpand" FontAttributes="Bold" />
+                <Entry Text="{Binding TitleNewCourse}" FontSize="Medium" HorizontalOptions="FillAndExpand" FontAttributes="Bold" Margin="0,0,30,0" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Icon:" FontSize="Medium" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" />
+                <Entry Text="{Binding IconNewCourse}" FontSize="Medium" HorizontalOptions="FillAndExpand" FontAttributes="Bold" Margin="0,0,30,0" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" Padding="10" Margin="10">
+                <Button x:Name="addButton" Text="Add" HorizontalOptions="FillAndExpand" Command="{Binding OnAddCourseButtonClickedCommand}" />
+                <Button x:Name="dismissButton" Text="Dismiss" HorizontalOptions="FillAndExpand" Command="{Binding OnDismissButtonClickedCommand}" />
+            </StackLayout>
+            <BoxView BackgroundColor="RoyalBlue"  HorizontalOptions="FillAndExpand" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
