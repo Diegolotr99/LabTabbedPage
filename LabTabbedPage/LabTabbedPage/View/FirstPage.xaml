@@ -13,18 +13,18 @@
             </StackLayout>
             <StackLayout>
                 <!--<Image Source="Unsplash96" HeightRequest="120" WidthRequest="100" />-->
-                <BoxView BackgroundColor="CornflowerBlue" HeightRequest="5" Margin="40,0"></BoxView>
-                <StackLayout HeightRequest="165" BackgroundColor="Silver"  Margin="40,0">
-                    <Image Source="{Binding ImageStudent.Source}" HeightRequest="160" WidthRequest="100" />
-                </StackLayout>
-                <BoxView BackgroundColor="CornflowerBlue" HeightRequest="5"  Margin="40,0"></BoxView>
+                <BoxView BackgroundColor="CornflowerBlue" HeightRequest="5" Margin="80,0"></BoxView>
+                <StackLayout HeightRequest="240" BackgroundColor="Silver"  Margin="80,0">
+                    <Image Source="{Binding ImageStudent.Source}" HeightRequest="230" Margin="5"/>
+                </StackLayout>    
+                <BoxView BackgroundColor="CornflowerBlue" HeightRequest="5"  Margin="80,0"></BoxView>
                 <Label Text="Capture/Select Image for New Student"
                     VerticalOptions="CenterAndExpand" 
                     HorizontalOptions="CenterAndExpand"
                      Font="18"  FontAttributes="Bold"  TextColor="Black"  />
                 <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" >
                     <!--Command="{Binding TakeStudentPictureCommand}"-->
-                    <Button x:Name="takePhoto" Text="Take Photo" IsEnabled="False"/>
+                    <Button x:Name="takePhoto" Text="Take Photo" Command="{Binding TakeStudentPictureCommand}"/>
                     <Button x:Name="pickPhoto" Text="Pick Photo" IsEnabled="False"/>
                 </StackLayout>
                 <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="5,0" Margin="10,0,10,0">

@@ -100,7 +100,7 @@ namespace LabTabbedPage.ViewModel
                 OnPropertyChanged("ActualCourse");
             }
         }
-
+        private string ImageTakenFilePath { get; set; }
         private Image _ImageStudent { get; set; }
         public Image ImageStudent {
             get { return _ImageStudent; }
@@ -119,6 +119,7 @@ namespace LabTabbedPage.ViewModel
                 OnPropertyChanged("IDNewCourse");
             }
         }
+        
         private string _TitleNewCourse { get; set; }
         public string TitleNewCourse
         {
@@ -158,8 +159,8 @@ namespace LabTabbedPage.ViewModel
             }
 
         }
-        private double _GradeNewStudent { get; set; }
-        public double GradeNewStudent
+        private int _GradeNewStudent { get; set; }
+        public int GradeNewStudent
         {
             get { return _GradeNewStudent; }
             set
@@ -195,10 +196,15 @@ namespace LabTabbedPage.ViewModel
         private async void InitClass()
         {
 
-            //lstStudents = await Student.GetStudents();
+           
             LstCourses = await Course.GetCourses();
             initialLstCourse = LstCourses;
-            //initialLstStudents = lstStudents;
+
+            ImageStudent = new Image();
+            ImageStudent.Source = "Contacts_100px.png";
+
+            lstStudents = await Student.getAllStudents();
+            initialLstStudents = lstStudents;
         }
         private async Task InitCommandsAsync()
         {
@@ -228,7 +234,8 @@ namespace LabTabbedPage.ViewModel
         private void SeeStudentDetail(string pID)
         {
             if (ActualCourse.ListStudents.Count > 0) {
-                ActualStudent = ActualCourse.ListStudents.Where(x => x.ID == pID).FirstOrDefault();
+
+                ActualStudent = ActualCourse.ListStudents.Where(x => x.ID == Int32.Parse(pID)).FirstOrDefault();
                 CurrentTabbedPage.CurrentPage = CurrentTabbedPage.Children[2];
             }
 
@@ -251,9 +258,15 @@ namespace LabTabbedPage.ViewModel
             {
                 Application.Current.MainPage.DisplayAlert("Missing Values", "Please set values ID and Name", "OK");
             } else {
-                Student newStudent = new Student { ID = IDNewStudent, Name = NameNewStudent, Grade = GradeNewStudent, LstHomeworks = new ObservableCollection<Homework>() };
+
+                Student newStudent = new Student { ID = Int32.Parse(IDNewStudent), Name = NameNewStudent, Grade = GradeNewStudent, LstHomeworks = new ObservableCollection<Homework>() };
                 //Next Line to be replaced by the image captured or image uploaded
-                newStudent.Picture = "Contacts_100px";
+                if (ImageTakenFilePath == "" || ImageTakenFilePath == null)
+                    newStudent.Picture = "Contacts_100px";
+                else {
+                    newStudent.Picture = ImageTakenFilePath;
+                   
+                }
                 ActualCourse.ListStudents.Add(newStudent);
 
                 IDNewStudent = "";
@@ -261,6 +274,8 @@ namespace LabTabbedPage.ViewModel
                 GradeNewStudent = 0;
 
                 CurrentTabbedPage.CurrentPage = CurrentTabbedPage.Children[1];
+                ImageStudent= new Image();
+                ImageStudent.Source = "Contacts_100px.png";
             }
         }
 
@@ -321,33 +336,39 @@ namespace LabTabbedPage.ViewModel
         #region Camera Async Methods
         private async void  TakeCameraPicture() {
 
-            
-            //if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
-            //{
-            //    await DisplayMessage("Error", "No Camera Available");
-            //    return;
-            //}
 
-            //var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
-            //{
-            //   Directory = "Test", SaveToAlbum = true, CompressionQuality = 75, CustomPhotoSize = 50,
-            //   PhotoSize = PhotoSize.MaxWidthHeight, MaxWidthHeight = 2000, DefaultCamera = CameraDevice.Front
+            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            {
+                await DisplayMessage("Error", "No Camera Available");
+                return;
+            }
 
-            //});
+            var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+            {
+                Directory = "Test",
+                SaveToAlbum = true,
+                CompressionQuality = 75,
+                CustomPhotoSize = 50,
+                PhotoSize = PhotoSize.MaxWidthHeight,
+                MaxWidthHeight = 2000,
+                DefaultCamera = CameraDevice.Front
 
-            //if (file == null)
-            //    return;
+            });
+
+            if (file == null)
+                return;
 
             //Application.Current.MainPage.DisplayAlert("File Location", file.Path, "OK");
-            
-            //_ImageStudent.Source = ImageSource.FromStream(() =>
-            //    {
-            //        var stream = file.GetStream();
-            //        file.Dispose();
-            //        return stream;
-            //   });
-        
-         }
+
+            ImageStudent = new Image();
+            ImageStudent.Source = ImageSource.FromStream(() =>
+                {
+                    var stream = file.GetStream();
+                    file.Dispose();
+                    return stream;
+                });
+            ImageTakenFilePath = file.Path;
+        }
         private async Task DisplayMessage(string head, string body) {
             Application.Current.MainPage.DisplayAlert(head, body, "OK");
         }

@@ -11,7 +11,7 @@
                 <Label Text="{Binding ActualCourse.Title}" Font="22" VerticalOptions="Center" YAlign="Center" TextColor="Black"/>
             </StackLayout>
             <StackLayout>
-                <ListView x:Name="lstVlstStudents" ItemsSource="{Binding ActualCourse.ListStudents}" RowHeight="60" HasUnevenRows="True">
+                <ListView x:Name="lstVlstStudents" ItemsSource="{Binding lstStudents}" RowHeight="60" HasUnevenRows="True">
                     <ListView.Header>
                         <StackLayout Orientation="Vertical">
                             <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" HorizontalOptions="Center">
